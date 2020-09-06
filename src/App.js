@@ -17,43 +17,63 @@
 */
 
 
+//Components
 import React, { useState, useEffect } from 'react';
+import SearchBar from './components/SearchBar';
+import IssueList from './components/IssueList';
+
+//UI
 import Header from './components/ui/Header';
 import Footer from './components/ui/Footer';
 
+//Styling
 import './App.css';
 
 function App() {
-  const [titles, setTitles] = useState('');
+  const [issues, setIssues] = useState([
+    {
+      'id':'1',
+      'name': 'loading...',
+    }
+  ]);
+  const [link, setLink] = useState('https://api.github.com/repos/facebook/create-react-app/issues?per_page=25&page=1');
 
   //API
   useEffect(() => {
-    fetch('https://api.github.com/repos/facebook/create-react-app/issues?per_page=25&page=1')
+    fetch(link)
+      .then(setIssues({'name':'Loading Data...'}))
       .then(res => res.json())
       .then(data => {
         setData(data);
       })
-      .catch(err => Promise.reject(err));;
+      .catch(err => {
+        err = 'NetworkError' ? setIssues({'name': 'Could Not Load'}) : setIssues({'name': err})
+      });;
 
-  }, []);
+  }, [link]);
 
   const setData = ( data ) => {
-    let titles = [];
+    let tempData = [];
     data.map((item) => (
-      titles.push(
-        <li>{item.title}</li>
-        )
+      tempData.push({
+        "id":item.id,
+        "name":item.title,
+        "body":item.body
+      })
     ));
-    setTitles(titles);
+    setIssues(tempData);
   }
 
+
+ 
+
+  console.log(link);
   
   return (
     <div className="container">
       <Header />
-      <ul>
-        {titles}
-      </ul>
+      <SearchBar getLink={(e) => setLink(e)} />
+      <IssueList issues={issues}/>
       <Footer />
     </div>
   );

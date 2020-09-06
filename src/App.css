@@ -9,6 +9,8 @@
   margin-right: auto;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: 300;
+  background-color: rgb(243, 243, 243);
+
 }
 
 body{
@@ -34,4 +36,78 @@ body{
 .footer a{
   text-decoration: none;
   color: rgba(172, 208, 255, 0.671);
+}
+
+/* SearchBar */
+.searchbar{
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+
+
+
+/* Issue */
+.issue-list ul{
+  list-style-type: none;
+}
+.card-container{
+  display: inline-block;
+  background-color: rgb(250, 250, 250);
+  border: 1px solid rgb(231, 229, 229);
+  padding: 0 5rem 0 5rem;
+  margin: .5rem;
+  width: 80%;
+}
+.card-container h2{
+  font-size: 18pt;
+}
+.issue-name{
+  display: flex;
+  justify-content: center;
+}
+.card-container button{
+  display: inline-block;
+  padding: 0.2rem 1rem;
+  background-color: rgb(250, 250, 250);
+  font-size: 10pt;
+	cursor: pointer;
+  outline: inherit;
+  border: none;
+}
+.not-found{
+  font-size: 8pt;
+  color: rgb(209, 202, 202);
+}
+
+
+/* mark-down */
+
+.markdown{
+  background-color: rgb(240, 240, 240);
+  color: rgb(0, 0, 0);
+  padding: 1rem;
+  margin-top: 0;
+  margin: 1rem;
+}
+.markdown p{font-size: 13pt;}
+.markdown h1{color: red;}
+.markdown h2{color: rgb(0, 26, 255);}
+.markdown h3{color: rgb(51, 116, 60);}
+.markdown li{color: rgb(167, 0, 167); font-size: 14pt;}
+.markdown code{
+  color: rgb(202, 147, 91);
+  word-wrap: break-word;
+  overflow-x: scroll;
+  white-space: pre-wrap;
+}
+.markdown pre{
+  display: inline-block;
+  background-color: rgb(68, 68, 68);
+  color: rgb(226, 226, 226);
+  width: 80%;
+}
+.markdown img{
+  max-width: 80%;
+  max-height: 80%;
 }
