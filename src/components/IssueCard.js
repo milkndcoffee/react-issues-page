@@ -3,11 +3,18 @@ import ReactMarkdown from 'react-markdown';
 
 const IssueCard = ({name, body, key}) => {
   const [hide, setHide] = useState(false);
-  const [isHidden, setIsHidden] = useState('Show');
+  const [hideStyle, setHideStyle] = useState({color: '#8989ca'});
+  const [isHidden, setIsHidden] = useState('[Show]');
   
   const displayMd = () =>{
-    setIsHidden(isHidden === 'Hide' ? 'Show' : 'Hide');
-    hide ? setHide(false) : setHide(true);
+    setIsHidden(isHidden === '[Hide]' ? '[Show]' : '[Hide]');
+    if (hide){
+      setHide(false);
+      setHideStyle({color:'#8989ca'});
+    } else{
+      setHide(true);
+      setHideStyle({color:'#eca0a0'});
+    }
   }
 
 
@@ -16,10 +23,14 @@ const IssueCard = ({name, body, key}) => {
       <div className="card-container">
         <div className="issue-name">
           <h2>{name}</h2>
-          {body !== '' ? <button type="button"  onClick={() => displayMd()}>{isHidden}</button> : <p className="not-found">No Body Found</p>}
+          {body !== '' ? 
+            <button type="button" style={hideStyle} onClick={() => displayMd()}>{isHidden}
+            </button> :
+            <p className="not-found">No Body Found</p>}
           <p>{key}</p>
         </div>
         <div style={hide ? showItem : hideItem}>
+          <hr></hr>
           <ReactMarkdown className={"markdown"} source={body} />
         </div>
       </div>
